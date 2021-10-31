@@ -75,6 +75,12 @@ namespace Business.Concrete
             return new SuccessDataResult<List<ProductDetailDto>>(_productDal.GetProductDetails());
         }
 
+        [ValidationAspect(typeof(ProductValidator))]
+        public IResult Update(Product product)
+        {
+            throw new NotImplementedException();
+        }
+
         private IResult CheckIfProductCountOfCategoryCorrect(int categoryId)
         {
             var result = _productDal.GetAll(p => p.CategoryId == categoryId).Count;
@@ -106,5 +112,7 @@ namespace Business.Concrete
             }
             return new SuccessResult();
         }
+
+        
     }
 }
